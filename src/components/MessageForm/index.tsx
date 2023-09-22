@@ -1,13 +1,12 @@
 import { useState } from "preact/hooks";
 
-const MessageForm = ({ ws }) => {
+const MessageForm = ({socket}) => {
   const [value, setValue] = useState("");
   const sendMessageFoo = (event) => {
     event.preventDefault();
-    console.log(value);
     if (value) {
-      ws.send(value);
       setValue("");
+      socket.emit('sendMessage', value);
     }
   };
 

@@ -1,20 +1,18 @@
-const Body = () => {
+const Body = ({ messages }) => {
+  if (messages.count === 0) {
+    return "Нет сообщений";
+  }
   return (
     <div class="chat__body">
-        <div className="chat__message">
-            <div>User: 1</div>
-            <div>Message: Сообщение</div>
-        </div>
-        <div className="chat__message">
-            <div>User: 1</div>
-            <div>Message: Сообщение</div>
-        </div>
-        <div className="chat__message">
-            <div>User: 1</div>
-            <div>Message: Сообщение</div>
-        </div>
+      {messages &&
+        messages.map((message) => (
+          <div className="chat__message" key={message}>
+            <div>Анноним</div>
+            <div>Message: {message}</div>
+          </div>
+        ))}
     </div>
-  )
-}
+  );
+};
 
-export default Body
+export default Body;
