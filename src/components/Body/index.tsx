@@ -1,11 +1,11 @@
-const Body = ({ messages }) => {
-  if (messages.count === 0) {
-    return "Нет сообщений";
+const Body = () => {
+  if ([].length === 0) {
+    return <>"Нет сообщений"</>;
   }
   return (
     <div class="chat__body">
-      {messages &&
-        messages.map((message) => (
+      {[] &&
+        [].map((message) => (
           <div className="chat__message" key={message}>
             <div>Анноним</div>
             <div>Message: {message}</div>

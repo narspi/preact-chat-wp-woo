@@ -1,17 +1,17 @@
 import { useState } from "preact/hooks";
 
-const MessageForm = ({socket}) => {
-  const [value, setValue] = useState("");
-  const sendMessageFoo = (event) => {
+const MessageForm = () => {
+  const [value, setValue] = useState<string>("");
+  const sendMessageFoo = (event:Event) => {
     event.preventDefault();
     if (value) {
       setValue("");
-      socket.emit('sendMessage', value);
     }
   };
 
-  const changeValueFoo = (event) => {
-    setValue(event.target.value);
+  const changeValueFoo = (event:Event) => {
+    const target = event.target as HTMLInputElement;
+    setValue(target.value);
   };
 
   return (
