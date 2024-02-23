@@ -1,11 +1,27 @@
+import { SocketContext } from "../Provider";
+import { useState, useEffect, useContext } from "preact/hooks";
+
 const Body = () => {
-  if ([].length === 0) {
-    return <>"Нет сообщений"</>;
+  const socket = useContext(SocketContext);
+
+  const [messages, setMessages] = useState<Array<string>>([]);
+
+  useEffect(() => {
+    socket.on("initialMessages", (messages) => {
+      setMessages(() => messages);
+    });
+    socket.on("newMessage", (message) => {
+      setMessages((prev) => [...prev, message]);
+    });
+  }, []);
+
+  if (messages.length === 0) {
+    return <div className="chat__body">"Нет сообщений"</div>;
   }
   return (
     <div class="chat__body">
-      {[] &&
-        [].map((message) => (
+      {messages &&
+        messages.map((message) => (
           <div className="chat__message" key={message}>
             <div>Анноним</div>
             <div>Message: {message}</div>

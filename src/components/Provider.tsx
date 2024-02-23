@@ -1,18 +1,17 @@
-import { createContext,ComponentChildren } from "preact";
-//import { useContext,useEffect,useState } from "preact/hooks";
+import { createContext, ComponentChildren } from "preact";
 import { Socket } from "socket.io-client";
-import {socket} from '../socket';
+import { socket } from "../socket";
 
-export const SocketContext = createContext<Socket | null>(null);
+export const SocketContext = createContext<Socket>(socket);
 
 interface SocketProviderInterface {
-    children: ComponentChildren
+  children: ComponentChildren;
 }
 
 function SocketProvider({ children }: SocketProviderInterface) {
-    return (
-        <SocketContext.Provider value={socket}>{children}</SocketContext.Provider>
-    );
+  return (
+    <SocketContext.Provider value={socket}>{children}</SocketContext.Provider>
+  );
 }
 
 export default SocketProvider;
